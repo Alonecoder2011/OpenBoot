@@ -29,7 +29,7 @@ call print_bios
 
 ; The first sector's already been loaded, so we start with the second sector
 ; of the drive. Note: Only bl will be used
-mov bx, 0x0002
+mov bx, 0x0003
 
 ; Now we want to load 2 sectors to load our entire bootloader.
 mov cx, 0x0005
