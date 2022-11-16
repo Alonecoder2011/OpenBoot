@@ -29,9 +29,9 @@ call print_bios
 
 ; The first sector's already been loaded, so we start with the second sector
 ; of the drive. Note: Only bl will be used
-mov bx, 0x0003
+mov bx, 0x0002
 
-; Now we want to load 2 sectors to load our entire bootloader.
+; Now we want to load 3 sectors for the bootloader and kernel
 mov cx, 0x0005
 
 ; Finally, we want to store the new sector immediately after the first
@@ -54,7 +54,7 @@ jmp $               ; Infinite loop
 %include "include/print_hex.asm"
 %include "include/load.asm"
 %include "include/gdt.asm"
-%include "include/ev.asm"
+%include "include/elevate.asm"
 
 ; DATA STORAGE AREA
 
@@ -102,7 +102,7 @@ jmp $       ; Infinite Loop
 %include "include/pm_detectlm.asm"
 %include "include/pm_initpt.asm"
 %include "include/pm_gdt.asm"
-%include "include/pm_ev.asm"
+%include "include/pm_elevate.asm"
 
 ; Define necessary constants
 vga_start:                  equ 0x000B8000
@@ -125,14 +125,15 @@ mov rdi, style_blue
 mov rsi, long_mode_note
 call print_long
 
+call kernel_start
+
 jmp $
 
 %include "long_mode/clear.asm"
 %include "long_mode/print.asm"
 
-
-kernel_start:                   equ 0x8200 
-long_mode_note:                      db `Now running in fully-enabled, 64-bit long mode!`, 0
+kernel_start:                   equ 0x8200              ; Kernel is at 1MB
+long_mode_note:                 db `Now running in fully-enabled, 64-bit long mode!`, 0
 style_blue:                     equ 0x1F
 
 times 512 - ($ - begin_long_mode) db 0x00
