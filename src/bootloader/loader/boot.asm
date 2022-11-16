@@ -125,8 +125,6 @@ mov rdi, style_blue
 mov rsi, long_mode_note
 call print_long
 
-call kernel_start
-
 jmp $
 
 %include "long_mode/clear.asm"

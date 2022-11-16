@@ -1,7 +1,7 @@
 #include <driver/vga.h>
 
 int main(){
-    clearwin(COLOR_BLK, COLOR_BLK);
+    clearwin(COLOR_WHT, COLOR_BLK);
 
     struct display screen;
     screen.x = 0;
