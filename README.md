@@ -1,6 +1,14 @@
 # OpenBoot
 A open bootloader and kernel for make OS`s even running custom kernels on ios (if we get to that) and android (Even eazzier)
 
+# Building
+`
+    $ sudo apt install clang lld ld64
+    $ git clone github.com/alonecoder2011/OpenBoot
+    $ cd OpenBoot
+    $ bash build.sh
+    $ (If you have qemu) qemu-system-x86_64 os.img
+`
 
 # Credits
 `
