@@ -54,7 +54,7 @@ jmp $               ; Infinite loop
 %include "include/print_hex.asm"
 %include "include/load.asm"
 %include "include/gdt.asm"
-%include "include/elevate.asm"
+%include "include/ev.asm"
 
 ; DATA STORAGE AREA
 
@@ -102,7 +102,7 @@ jmp $       ; Infinite Loop
 %include "include/pm_detectlm.asm"
 %include "include/pm_initpt.asm"
 %include "include/pm_gdt.asm"
-%include "include/pm_elevate.asm"
+%include "include/pm_ev.asm"
 
 ; Define necessary constants
 vga_start:                  equ 0x000B8000
